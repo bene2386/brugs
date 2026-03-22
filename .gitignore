@@ -1,4 +1,42 @@
-*.log
+# Ambiente Python
 venv/
-.env
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+*.secret
+
+# Logs
+*.log
+logs/
+
+# Caches e dados temporários
+.cache/
+*.tmp
+*.bak
+
+# Dados exportados localmente
+*.csv
+*.xlsx
+*.json.bak
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Tokens OAuth salvos localmente
+*_token.json
+*_token.pkl
