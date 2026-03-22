@@ -5,15 +5,16 @@
 # automaticamente ao repositório privado.
 #
 # Uso:
-#   bash docs/auto-sync.sh           # roda em foreground
-#   bash docs/auto-sync.sh &         # roda em background
-#   nohup bash docs/auto-sync.sh &   # roda desanexado do terminal
+#   bash conta-azul-sync/docs/auto-sync.sh           # roda em foreground
+#   bash conta-azul-sync/docs/auto-sync.sh &         # roda em background
+#   nohup bash conta-azul-sync/docs/auto-sync.sh &   # roda desanexado do terminal
 #
 # Log: /tmp/brugs-autosync.log
 # PID: /tmp/brugs-autosync.pid
 # =============================================================
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# REPO_DIR = raiz do repositório brugs (dois níveis acima de docs/)
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 LOG_FILE="/tmp/brugs-autosync.log"
 PID_FILE="/tmp/brugs-autosync.pid"
 DEBOUNCE_SECONDS=10  # aguarda X segundos após última alteração antes de commitar
@@ -80,8 +81,6 @@ inotifywait -m -r \
     sleep "$DEBOUNCE_SECONDS"
 
     CURRENT=$(date +%s)
-    # Só commita se não houve novo evento no período de debounce
-    # (verifica se LAST_EVENT ainda é o mesmo — aproximação simples)
     DIFF=$((CURRENT - LAST_EVENT))
     if [ "$DIFF" -ge "$DEBOUNCE_SECONDS" ] || [ "$DIFF" -eq 0 ]; then
         commit_and_push

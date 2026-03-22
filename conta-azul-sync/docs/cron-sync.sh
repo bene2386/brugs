@@ -5,7 +5,7 @@
 # alteração pendente no repositório.
 #
 # Configuração recomendada no crontab:
-#   */5 * * * * bash /data/.openclaw/workspace/cfo/scripts/docs/cron-sync.sh
+#   */5 * * * * bash /data/.openclaw/workspace/cfo/scripts/conta-azul-sync/docs/cron-sync.sh
 #
 # Log: /tmp/brugs-cron-sync.log
 # =============================================================
